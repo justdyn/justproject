@@ -1,40 +1,53 @@
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext("2d");
 
-canvas.width = 1024;
+canvas.width = 1423;
 canvas.height = 576;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 class Sprite {
-    constructor({position, velocity, color = "red"}) {
+    constructor({position, velocity, color = "red", offset}) {
         this.position = position;
         this.velocity = velocity;
         this.width = 50;
         this.height = 150;
         this.lastkey;
         this.attackbox = {
-            position: this.position,
+            position: {
+                x: this.position.x,
+                y: this.position.y
+            },
+            offset,
             width: 100,
             height: 50
         }
 
         this.color = color;
         this.isAttacking;
+        this.health = 100;
     }
 
     draw(){
         c.fillStyle= this.color;
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
-        //attackbox
-        c.fillStyle = 'green';
-        c.fillRect(this.attackbox.position.x, this.attackbox.position.y, this.attackbox.width, this.attackbox.height)
+        if (this.isAttacking){
+            //attackbox
+            c.fillStyle = 'green';
+            c.fillRect(
+                this.attackbox.position.x, 
+                this.attackbox.position.y, 
+                this.attackbox.width, 
+                this.attackbox.height)
+        }
     }
 
     update() {
         this.draw()
+        this.attackbox.position.x = this.position.x + this.attackbox.offset.x
+        this.attackbox.position.y = this.position.y
         
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -60,6 +73,10 @@ const player = new Sprite({
     velocity: {
         x:0,
         y:10
+    },
+    offset: {
+        x: 0,
+        y: 0
     }
 })
 
@@ -75,7 +92,11 @@ const enemy = new Sprite({
         y:0
     },
 
-    color: "blue"
+    color: "blue",
+    offset: {
+        x: -50,
+        y: 0
+    }
 })
 
 
@@ -96,6 +117,39 @@ const keys = {
         pressed: false
     }
 }
+
+function rectangular_collision({rectangle1, rectangle2}){
+    return(
+        rectangle1.attackbox.position.x + rectangle1.attackbox.width >= rectangle2.position.x && rectangle1.attackbox.position.x <= rectangle2.position.x + rectangle2.width && rectangle1.attackbox.position.y + rectangle1.attackbox.height >= rectangle2.position.y && rectangle1.attackbox.position.y <= rectangle2.position.y + rectangle2.height
+    )
+}
+
+function determine_winner({player, enemy, timer_id}){
+    clearTimeout(timer_id);
+    document.querySelector('.displaytext').style.display = 'flex';
+    if (player.health === enemy.health){
+        document.querySelector('.displaytext').innerHTML = 'Tie!!';
+    } else if (player.health > enemy.health) {
+        document.querySelector('.displaytext').innerHTML = 'Player 1 Wins';
+    } else if (player.health < enemy.health) {
+        document.querySelector('.displaytext').innerHTML = 'Player 2 Wins';
+    }
+}
+
+let timer = 60;
+let timer_id;
+function decrease_timer(){
+    if (timer > 0) {
+        timer_id = setTimeout(decrease_timer, 1000)
+        timer--;
+        document.querySelector('.timer').innerHTML = timer;
+    }
+    if (timer === 0) {
+        determine_winner({player, enemy, timer_id});
+    }
+}
+
+decrease_timer()
 
 function animate(){
     window.requestAnimationFrame(animate)
@@ -121,15 +175,39 @@ function animate(){
         enemy.velocity.x = 5
     }
 
-    if (player.attackbox.position.x + player.attackbox.width >= enemy.position.x && player.attackbox.position.x <= enemy.position.x + enemy.width && player.attackbox.position.y + player.attackbox.height >= enemy.position.y && player.attackbox.position.y <= enemy.position.y + enemy.height && player.isAttacking){
-        console.log("Hit!");
+    if (
+        rectangular_collision({
+            rectangle1: player,
+            rectangle2: enemy
+        }) &&
+        player.isAttacking
+    ){
+        player.isAttacking = false;
+        enemy.health -= 20
+        document.querySelector('.enemy-health2').style.width = enemy.health + '%';
+    }
+
+    if (
+        rectangular_collision({
+            rectangle1: enemy,
+            rectangle2: player
+        }) &&
+        enemy.isAttacking
+    ){
+        enemy.isAttacking = false;
+        player.health -= 20
+        document.querySelector('.player-health2').style.width = player.health + '%';
+    }
+
+    //end game based on health
+    if (enemy.health <= 0 ||  player.health <= 0) {
+        determine_winner({player, enemy, timer_id});
     }
 }
 
 animate();
 
 window.addEventListener('keydown', (event) => {
-    console.log(event.key);
     switch (event.key) {
         case 'd' :
             keys.d.pressed = true;
@@ -158,9 +236,10 @@ window.addEventListener('keydown', (event) => {
         case 'ArrowUp' :  
             enemy.velocity.y = -20;
             break;
+        case 'ArrowDown':
+            enemy.attack();
+            break;
     }
-
-    console.log(event.key);
 })
 
 window.addEventListener('keyup', (event) => {
@@ -181,6 +260,4 @@ window.addEventListener('keyup', (event) => {
             keys.ArrowLeft.pressed = false;
             break;
     }
-
-    console.log(event.key);
 })
