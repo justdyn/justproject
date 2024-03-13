@@ -1,0 +1,54 @@
+String Literals
+Sequence of characters enclosed in quotes (single or double).
+
+Numeric Literals
+Representing numbers ()
+
+Boolean Literals
+Representating true or false.
+
+Null Literals
+Representating a NULL or UNDEFINED value
+
+Lexical Structures
+fundamental elements in programming languange that define how the source code
+is writen and 
+
+
+Comments
+non executable portions on your program that can describe what are your 
+program purpose.
+
+
+Literals
+presentations of fixed values in the source code. HARD CODE of your program
+that we can input the data on your program.
+
+Identifier
+const value, variable, properties, class
+
+Rules for Naming Indentifiers
+-tidak diawali dengan angka
+-semicolon uses for permisah di antara pernyataan (opsional)
+
+semicolon is opsional but is effective against copying program.
+
+UNICODE
+daftar kode untuk representasi huruf yang lebih luas.
+
+Source Code
+diekspresikan melalui urutan escape UNICODE.
+
+String
+Dapat dipresentasikan
+
+Normalization
+proses yang memastikan representasi karakter binder yang berbeda distandarisasi ke nilai biner yang sama
+
+4 Normalization Algortihms UNICODE:
+-NFC
+-NFD
+-NFKC
+-NFKD
+
+ASCII and UNICODE is different becaues ASCII is contain 255 characters meanwhile UNICODE is full and have wide character varians.
