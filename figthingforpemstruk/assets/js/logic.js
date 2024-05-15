@@ -4,9 +4,23 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 576;
 
+// function resizeCanvas() {
+//     canvas.width = window.innerWidth;
+//     canvas.height = window.innerHeight;
+//     c.fillRect(0, 0, canvas.width, canvas.height);
+//   }
+
+//   // Initial resize
+//   resizeCanvas();
+
+//   // Event listener to resize the canvas when the window is resized
+//   window.addEventListener('resize', () => {
+//     resizeCanvas();
+//   });
+
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const gravity = 0.7;
+const gravity = 0.9;
 
 const background = new Sprite({
     position: {
@@ -174,6 +188,7 @@ const keys = {
 decrease_timer()
 
 function animate() {
+
     window.requestAnimationFrame(animate)
     c.fillStyle = "black"
     c.fillRect(0, 0, canvas.width, canvas.height)
@@ -183,6 +198,31 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
     player.update()
     enemy.update()
+
+    // boundary
+    if (player.position.x < 0) {
+        player.position.x = 0;
+    } else if (player.position.x + player.width > canvas.width) {
+        player.position.x = canvas.width - player.width;
+    }
+
+    if (player.position.y < 0) {
+        player.position.y = 0;
+    } else if (player.position.y + player.height > canvas.height) {
+        player.position.y = canvas.height - player.height;
+    }
+
+    if (enemy.position.x < 0) {
+        enemy.position.x = 0;
+    } else if (enemy.position.x + enemy.width > canvas.width) {
+        enemy.position.x = canvas.width - enemy.width;
+    }
+
+    if (enemy.position.y < 0) {
+        enemy.position.y = 0;
+    } else if (enemy.position.y + enemy.height > canvas.height) {
+        enemy.position.y = canvas.height - enemy.height;
+    }
 
     player.velocity.x = 0
     enemy.velocity.x = 0
@@ -262,12 +302,14 @@ function animate() {
     if (enemy.health <= 0 || player.health <= 0) {
         determine_winner({ player, enemy, timer_id });
     }
+
+    // if (player.position.x )
 }
 
 animate();
 
 window.addEventListener('keydown', (event) => {
-    if (!player.dead) {
+    if (!player.dead && !player.result_draw && timer > 0) {
         switch (event.key) {
             case 'd':
                 keys.d.pressed = true;
@@ -286,7 +328,7 @@ window.addEventListener('keydown', (event) => {
         }
     }
 
-    if (!enemy.dead) {
+    if (!enemy.dead && !enemy.result_draw && timer > 0) {
         switch (event.key) {
             case 'l':
                 keys.l.pressed = true;

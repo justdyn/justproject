@@ -2,32 +2,55 @@
     box-sizing: border-box;
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
-    font-style: normal;        
+    font-style: normal;
 }
 
-#container-canvas{
+body {
+    background-image: url('https://64.media.tumblr.com/5d37ab2aa782462c7aa092f7bd0d27cb/2f374d07287b003b-f4/s1280x1920/fe094893d79e09d668e1705e8b9144964f38ce75.gifv');
+    background-size: cover;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#container-canvas {
     position: relative;
     display: inline-block;
 }
 
-#smallcontainer-canvas{
+#smallcontainer-canvas {
     position: absolute;
-    display: flex; 
-    width: 100%; 
+    display: flex;
+    width: 100%;
     align-items: center;
     padding: 20px;
 }
 
-#container-canvas .timer{
-    background-color: black; 
-    width: 100px; 
-    height: 50px; 
+#container-canvas .timer {
+    background-color: black;
+    width: 100px;
+    height: 50px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     border: 4px solid white;
+}
+
+.menu {
+    position: relative;
+    justify-content: center;
 }
 
 #player {
@@ -40,13 +63,13 @@
     border-bottom: 4px solid white;
 }
 
-#player .player-health{
-    background-color: red; 
+#player .player-health {
+    background-color: red;
     height: 30px;
     width: 100%;
 }
 
-#player .player-health2{
+#player .player-health2 {
     position: absolute;
     background: #818CF8;
     top: 0;
@@ -55,7 +78,7 @@
     width: 100%;
 }
 
-#enemy{
+#enemy {
     position: relative;
     width: 100%;
     border-top: 4px solid white;
@@ -63,12 +86,12 @@
     border-bottom: 4px solid white;
 }
 
-#enemy .enemy-health{
-    background-color: red; 
+#enemy .enemy-health {
+    background-color: red;
     height: 30px;
 }
 
-#enemy .enemy-health2{
+#enemy .enemy-health2 {
     position: absolute;
     background: #818CF8;
     top: 0;
