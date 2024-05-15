@@ -1,0 +1,8 @@
+Rakha
+JavaScript, yang awalnya disebut Mocha, merupakan bahasa pemrograman yang digunakan secara luas oleh Front, Back, dan Full Stack WEB Developer di Indonesia, dengan imbalan yang cukup besar. Meski diciptakan oleh Brendan Eich, JS memiliki kelemahan pada keamanan backend dan kesulitan dalam pelacakan kesalahan program, karena dapat tetap berjalan meskipun terjadi kesalahan. Berbagai Framework JS tidak hanya digunakan untuk pengembangan web, tetapi juga untuk pembuatan 2D Rendering dan Virtual Machine Rendering. 
+
+Azkha
+Fungsi console.log pada JS adalah untuk membantu melakukan debugging pada program yaitu dengan mencetak informasi/pesan di konsol pengembang web. 
+
+Rani
+Instalasi VScode dan Node JS, menginstall sesuai OS masing-masing. Install NVM untuk mempermudah mengsetting program yang kita buat serta mendapat versi yang terbaru. Instal Node Js dengan versi yang direkomendasikan. Running Windows Power Shell untuk mengecek apakah sudah terinstal atau belum dari NVM. Masuk ke terminal di Vs Code untuk melihat versi dari Node yang kita gunakan apakah sudah terinstall atau belum. Buat Folder dan file baru dengan akhiran .js .
