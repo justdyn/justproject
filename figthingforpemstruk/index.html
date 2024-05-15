@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/css/menu-styles.css">
+</head>
+<body>
+    <img class="logo" src="assets/img/logo.png" alt="Logo">
+    <div class="game-screen">
+        <div class="button-container">
+            <a class="button" href="javascript:setTimeout(()=>{window.location = '/game.html' },500);">
+                <button type="button" onclick="playSound('play')">
+                    <img src="assets/img/play-button.png" alt="Play Button">
+                </button>
+            </a>
+            <a class="button" href="#popup1">
+                <button type="button" onclick="playSound('settings')">
+                    <img src="assets/img/button-2.png" alt="Settings Button">
+                </button>
+            </a>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: white;">Settings</h2>
+                <a class="close" href="#">×</a>
+                <div class="content">
+                    <h3 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: white;">Music</h3>
+                        <!-- <button type="button" onclick="toggleBGM()">
+                            <img src="asset/img/button-2.png" alt="Settings Button">
+                        </button> -->
+                    <label class="switch" onchange="toggleBGM()">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+            <!-- <button class="play-button" onclick="playSound('play')">PLAY</button>
+            <button class="settings-button" onclick="playSound('settings')">SETTINGS</button> -->
+        
+    </div>    
+    <audio id="bgm" src="assets/audio/menu-bgm.mp3" autoplay loop></audio>
+    <script src="assets/js/menu-script.js"></script>
+</body>
+</html>
+
+
+

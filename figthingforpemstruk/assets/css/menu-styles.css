@@ -1,0 +1,172 @@
+body{
+  background-image: url('https://64.media.tumblr.com/5d37ab2aa782462c7aa092f7bd0d27cb/2f374d07287b003b-f4/s1280x1920/fe094893d79e09d668e1705e8b9144964f38ce75.gifv');
+  background-size: cover;
+  
+  height: 100vh;
+  padding:0;
+  margin:0;
+}
+
+.logo{
+position: absolute; /* Position the logo absolutely */
+top: 120px; /* Adjust top position as needed */
+left: 120px; /* Adjust left position as needed */
+width: 800px; /* Set the width of the logo */
+height: auto; /* Maintain aspect ratio */
+}
+
+
+
+.button-container {
+  display: flex;
+  flex-direction: column; /* Arrange buttons vertically */
+  justify-content: flex-end; /* Align buttons to the left */
+  align-items: flex-end; /* Align buttons vertically to the left */
+  padding-top : 130px; /* Add margin to the left */
+}
+
+/* Additional styles for the buttons if needed */
+button {
+  margin: 5px;
+  border: none;
+  outline: none;
+  background: none;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.box {
+width: 20%;
+margin: 0 auto;
+background: rgba(255,255,255,0.2);
+padding: 35px;
+border: 2px solid #fff;
+border-radius: 20px/50px;
+background-clip: padding-box;
+text-align: center;
+}
+
+.button {
+padding-right: 120px;
+padding-top: 60px;
+color: #fff;
+border:none;
+border-radius: 20px/50px;
+text-decoration: none;
+cursor: pointer;
+transition: all 0.3s ease-out;
+}
+
+button:hover {
+transform: scale(1.1);
+}
+
+.overlay {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background: rgba(0, 0, 0, 0.7);
+transition: opacity 500ms;
+visibility: hidden;
+opacity: 0;
+}
+.overlay:target {
+visibility: visible;
+opacity: 1;
+}
+
+.popup {
+margin: 70px auto;
+padding: 20px;
+background: #FFAF45;
+opacity: 0.7;
+border-radius: 5px;
+width: 30%;
+position: relative;
+transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+margin-top: 0;
+color: #333;
+font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+position: absolute;
+top: 20px;
+right: 30px;
+transition: all 200ms;
+font-size: 30px;
+font-weight: bold;
+text-decoration: none;
+color: #333;
+}
+.popup .close:hover {
+color: orange;
+}
+.popup .content {
+max-height: 30%;
+overflow: auto;
+}
+
+/*The switch - the box around the slider*/
+.switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+/* The slider */
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+border-radius: 34px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+border-radius: 50%;
+}
+
+input:checked + .slider {
+background-color: #FF6500;
+opacity: 0.9;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+
+/* Add more .person selectors for additional people */
